@@ -1,0 +1,52 @@
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+
+}
+body{
+    background-image: url("../gif/home.gif");
+    background-size: cover;
+}
+.main{
+    display: flex;
+    flex-direction: row;
+}
+
+.alaba{
+  display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 20%;
+    border: black 2px solid;
+    min-height: 650px;
+}
+
+.helen{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    width: 26%;
+    min-height: 650px;
+    border: black 2px dotted;
+    margin-left: 2%;
+    margin-right: 2%;
+}
+.delgo{
+    display: flex;
+    width: 50%;
+    min-height: 650px;
+    border: black 2px solid;
+    justify-content: space-around;
+}
+.delgo > div {
+    width: 48%;
+    background-color: cyan;
+    height: 300px;
+}
+
+
+
+
+/* css for calculator8

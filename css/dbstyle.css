@@ -1,0 +1,40 @@
+.dashlogo{
+    font-size: 2rem;
+}
+
+.fontsize{
+    font-size: 1rem;
+}
+
+.bordaraduis{
+    border-radius: 10px;
+}
+
+.sect1{
+    background-color: lightblue;
+
+
+}
+
+.sect2{
+    background-color: powderblue;
+
+}
+
+.sect3{
+    background-color: lightblue;
+
+
+}
+
+.attendanceNUm{
+    color: white;
+    font-size: 15px;
+
+
+}
+
+.cursor{
+    cursor: pointer;
+}
+
