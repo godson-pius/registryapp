@@ -162,3 +162,8 @@ margin-top: -20%;
     height: 70%;
     
 }
+.rounded.circle{
+    padding: 8rem;
+    border-radius: 50% !important;
+    border: 4px solid #1479FF !important   ;
+}
