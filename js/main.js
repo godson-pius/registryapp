@@ -10,7 +10,11 @@ const contact=document.querySelector('#contact');
     const classsettings=document.querySelector('.settings');
     const add=document.querySelector('.add');
     const hidden=document.querySelector('.hidden');
+    const ham=document.querySelector('.burger');
+    const nv=document.querySelector('.nv');
+        const main=document.querySelector('.main');
 
+    console.log(nv)
     classcontact.addEventListener('click',()=>{
         round.forEach((roun)=>{
             roun.classList.remove('round');
@@ -72,8 +76,15 @@ const contact=document.querySelector('#contact');
         hidden.click();
     })
 
+    ham.addEventListener('click',()=>{
+       
+      nv.style.display='flex';
+       ham.style.display='none' 
     
-
+      console.log(main)
+      
+    })
+    
     var events = [
     {'Date': new Date(2016, 6, 7), 'Title': 'Doctor appointment at 3:25pm.'},
     {'Date': new Date(2016, 6, 18), 'Title': 'New Garfield movie comes out!', 'Link': 'https://garfield.com'},
@@ -100,7 +111,6 @@ viewrecords.addEventListener('click',()=>{
         
     }
    
-    // day.style.display='none';
-    // month.style.display='block';
+    
     
 })
