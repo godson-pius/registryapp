@@ -12,7 +12,7 @@ const contact=document.querySelector('#contact');
     const hidden=document.querySelector('.hidden');
     const ham=document.querySelector('.burger');
     const nv=document.querySelector('.nv');
-        const main=document.querySelector('.main');
+        const main=document.querySelector('.none');
 
     console.log(nv)
     classcontact.addEventListener('click',()=>{
@@ -77,12 +77,22 @@ const contact=document.querySelector('#contact');
     })
 
     ham.addEventListener('click',()=>{
+        let nu=false;
        
-      nv.style.display='flex';
-       ham.style.display='none' 
+            nv.style.display='flex';
+            ham.style.display='none' ;
+            nv.style.transition='3s ease-in all'
+        
+       
+     
     
-      console.log(main)
+     
       
+    })
+    main.addEventListener('click',()=>{
+        nv.style.display='none';
+        ham.style.display='flex' ;
+
     })
     
     var events = [
