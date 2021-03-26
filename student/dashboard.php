@@ -66,7 +66,7 @@ background-size: cover; background-position: center; object-fit: contain;">
 <div class=" col-sm-12 none  col-md-7 col-lg-6 pt-4 px-lg-5 px-md-4">
     
 <h3>Your<br>dashboard</h3>
-<p class="pt-3" style="color: #C8D0DE;font-size: small;">Today's timeline</p>
+<p class="pt-3 text-primary" style="font-size: small;">Today's timeline</p>
 <div class="d-flex flex-column">
 <div class=" timeline px-3" style="border: 1px solid #1479FF; color: #1479FF;">
 <i class="far fa-clock    "></i>
@@ -83,16 +83,16 @@ background-size: cover; background-position: center; object-fit: contain;">
 
 </div>
 
-<p class="pt-3" style="color: #C8D0DE;font-size: small;">Lastweek's timeline</p>
+<p class="pt-3" style="color: #262afe;font-size: small;">Lastweek's timeline</p>
 <div class="d-flex flex-column">
-<div class="border timeline px-3" style=" color: #C8D0DE;">
+<div class="border timeline px-3 btn-outline-primary text-dark" style=" color: #C8D0DE;">
 <i class="far fa-clock    "></i>
 <p class="m-0 px-3"> Mon</p>
 <p class="m-0 px-3">08:00am</p>
 <p class="m-0 px-3">05:00pm</p>
 
 </div>
-<div class=" timeline px-3" style="background-color: #E7F1FD; color: #C8D0DE;">
+<div class=" timeline px-3 btn-outline-primary text-dark " style="/*background-color: #E7F1FD;*/ color: #C8D0DE;">
 <i class="far fa-clock    "></i>
 <p class="m-0 px-3"> Tue</p>
 <p class="m-0 px-3">08:30am</p>
@@ -102,14 +102,14 @@ background-size: cover; background-position: center; object-fit: contain;">
 
 </div>
 
-<div class="border timeline px-3" style=" color: #C8D0DE;">
+<div class="border timeline px-3 btn-outline-primary text-dark" style=" color: #C8D0DE;">
 <i class="far fa-clock    "></i>
 <p class="m-0 px-3"> Wed</p>
 <p class="m-0 px-3">08:00am</p>
 <p class="m-0 px-3">05:00pm</p>
 
 </div>
-<div class=" timeline px-3" style="background-color: #E7F1FD; color: #C8D0DE;">
+<div class=" timeline px-3 btn-outline-primary text-dark" style="/*background-color: #E7F1FD;*/ color: #C8D0DE;">
 <i class="far fa-clock    "></i>
 <p class="m-0 px-3"> Thu</p>
 <p class="m-0 px-3">08:30am</p>
@@ -117,7 +117,7 @@ background-size: cover; background-position: center; object-fit: contain;">
 
 </div>
 
-<div class="border timeline px-3" style=" color: #C8D0DE;">
+<div class="border timeline px-3 btn-outline-primary text-dark" style=" color: #C8D0DE;">
 <i class="far fa-clock    "></i>
 <p class="m-0 px-3"> Fri</p>
 <p class="m-0 px-3">08:30am</p>
@@ -148,29 +148,29 @@ background-size: cover; background-position: center; object-fit: contain;">
 
 
 <div class="signin   mt-4 pt-2">
-<p class="ml-5  mt-4" style="font-size: 0.7rem;  color: #C8D0DE;">Take attendance</p>
+<p class="ml-5  mt-4" style="font-size: 0.7rem;  color: #262afe;">Take attendance</p>
 <div class="signcon">
 <a href="">
 <div class="sign col-md-12 signcon1">
 <div class="circle">
-<i class="fas fa-marker    "></i>
+<i class="fas fa-marker  text-primary   "></i>
 </div>
-<p class="mt-2"> Sign in</p>
+<p class="mt-2 text-primary"> Sign in</p>
 </div>
 </a>
-<a href="">
+<a href="" class="">
 <div class="sign signcon2">
 <div class="circle">
-<i class="fas fa-marker    "></i>
+<i class="fas fa-marker  text-danger   "></i>
 
 </div>
-<p class="mt-2"> Sign out</p>
+<p class="mt-2 text-danger"> Sign out</p>
 
 </div>
 </a>
 </div>
 <div class="attendace  mt-4 pt-2">
-<p class="ml-5 mt-4" style="font-size: 0.7rem;  color: #C8D0DE;">Attendance rating</p>
+<p class="ml-5 mt-4" style="font-size: 0.7rem;  color: #262afe;">Attendance rating</p>
 <div class="signco">
 
 <div class="attendancecon col-6">
@@ -188,7 +188,7 @@ background-size: cover; background-position: center; object-fit: contain;">
 <div class="round1" >
 <i class="fas fa-id-card    "></i>
 </div>
-<p style="position: absolute; left: 88%; font-size: 0.5rem;" class="pb-0 text-dark" >Classes Skipped</p>
+<p style="position: absolute; left: 88%; font-size: 0.5rem;" class="pb-0 text-dark " >Classes Skipped</p>
 <div class="progress mt-3 ml-4 h-25 w-50 d-flex align-items-center" style="border-radius: 2rem !important;">
 
 <div class="progress-bar h-50" role="progressbar" style="width: 15%;border-radius: 2rem;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
@@ -419,6 +419,8 @@ background-size: cover; background-position: center; object-fit: contain;">
 
 
 </script>
+
+
 </body>
 </html>
 <!--
