@@ -223,11 +223,11 @@ background-size: cover; background-position: center; object-fit: contain;">
 <div class="inputcon">
 <form action="">
 <label for=""  class="py-2">Firstname:</label>
-<input type="text"  value="Mitchelle" class="form-control">
+<input type="text"  value="" class="form-control">
 <label for="" class="py-2">Lastname:</label>
-<input type="text"  value="Kelvin" class="form-control">
+<input type="text"  value="<?php echo $_COOKIE['lname'];?>" class="form-control">
 <label for=""  class="py-2">Email:</label>
-<input type="email"  value="Mitchelle@gmail.com" class="form-control">
+<input type="email"  value="<?php echo $_COOKIE['email'];?>" class="form-control">
 <button type="submit" class="btn btn-primary my-3">Edit Profile</button>
 
 </form>

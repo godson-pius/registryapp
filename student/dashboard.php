@@ -1,3 +1,35 @@
+<?php
+$day = strtoupper(date('D'));
+$date = date('Y'.'-'.'m'.'-'.'d');
+$time = date('h'.':'.'i'.' '.'a');
+$emc=$_COOKIE['id'];
+require_once("config.php");
+
+$sql = "SELECT * from students where Id_no = '$emc'";
+ $result = mysqli_query($link, $sql);
+     $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+     
+     $pic = $row['Profile_pic'];
+     
+     $emailed = $row['Email_address'];
+     $fnamed = $row['First_name'];
+     $lnamed = $row['Last_name'];
+     $stud = $row['Student_id'];
+     $em2 = $row['Id_no'];
+
+     
+    if($pic == NULL){
+        echo "<style>";
+        echo "#profiled {background-image: url(../images/2003329.jpg)} #rad {background-image: url(../images/2003329.jpg)}";
+        echo "</style>";
+    }  
+    else{  
+        
+        echo "<style>";
+        echo "#profiled {background-image:url($pic)} #rad {background-image: url($pic);}";
+        echo "</style>";
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -48,10 +80,9 @@
 </div>
 
 <div class="roundcon1">
-<div class="round1" style="background-image: url(../images/2003329.jpg);
-background-size: cover; background-position: center; object-fit: contain;">
+<div class="round1"  id="rad" style="background-size: cover; background-position: center; object-fit: contain;">
 </div>
-<p class="font-weight-bold">Mitchelle</p>
+<p class="font-weight-bold"><?php echo $fnamed ?></p>
 </div>
 
 <div class="roundcon1 py-2">
@@ -129,7 +160,7 @@ background-size: cover; background-position: center; object-fit: contain;">
 
 <div id="dashboard" class=" col-sm-10 col-md-5 w-100  pt-4 pl-sm-5 col-lg-6 px-md-0 px-lg-5">
 <div class="reminder  col-lg-9 pt-4">
-<h5 class="ml-5 ml-md-3">Hello,Mitchelle</h5>
+<h5 class="ml-5 ml-md-3">Hello, <?php  echo $fnamed;?></h5>
 <p class="ml-5 mt-4 ml-md-3" style="font-size: 0.7rem;">Don't forget to Sign in <br>and Sign Out today</p>
 <p class="ml-5 ml-md-3 my-md-2 mt-4 " style="font-size: 0.7rem;">Have a nice day.</p>
 
@@ -150,7 +181,7 @@ background-size: cover; background-position: center; object-fit: contain;">
 <div class="signin   mt-4 pt-2">
 <p class="ml-5  mt-4" style="font-size: 0.7rem;  color: #262afe;">Take attendance</p>
 <div class="signcon">
-<a href="">
+<a href="" onclick="signin();">
 <div class="sign col-md-12 signcon1">
 <div class="circle">
 <i class="fas fa-marker  text-primary   "></i>
@@ -158,7 +189,7 @@ background-size: cover; background-position: center; object-fit: contain;">
 <p class="mt-2 text-primary"> Sign in</p>
 </div>
 </a>
-<a href="" class="">
+<a href="" class="" onclick="signout();">
 <div class="sign signcon2">
 <div class="circle">
 <i class="fas fa-marker  text-danger   "></i>
@@ -213,23 +244,24 @@ background-size: cover; background-position: center; object-fit: contain;">
 <h5>Profile</h5>
 <div class="profilecon">
 <div class=" d-flex justify-content-center">
-<div class="rounded circle " style="background: url(../images/2003329.jpg) ; background-size: cover; background-position: center; object-fit: cover;position: relative;">
+<div class="rounded circle " style="background-size: cover; background-position: center; object-fit: cover;position: relative;" id="profiled">
 <div class="add p-1 text-white" style="position: absolute;top: 70%; left: 90%; background-color:rgba(0, 132, 219, 0.466);width: 2rem;height: 2rem;display: flex;justify-content: center;align-items: center;border-radius: 50%;border: 1px solid white;">
 <i class="fas fa-plus    "></i>
-<input type="file" hidden class="hidden">
+<form method="POST" action="edit.php" enctype="multipart/form-data">
+<input type="file" class="hidden" name="profile">
 </div>
 </div>
 </div>
 
 <div class="inputcon">
-<form action="">
+
 <label for=""  class="py-2">Firstname:</label>
-<input type="text"  value="Mitchelle" class="form-control">
+<input type="text" name="fnames"  value="<?php echo $fnamed;?>" class="form-control">
 <label for="" class="py-2">Lastname:</label>
-<input type="text"  value="Kelvin" class="form-control">
+<input type="text" name="lnames"  value="<?php echo $lnamed;?>" class="form-control">
 <label for=""  class="py-2">Email:</label>
-<input type="email"  value="Mitchelle@gmail.com" class="form-control">
-<button type="submit" class="btn btn-primary my-3">Edit Profile</button>
+<input type="email" name="emails"  value="<?php echo $emailed;?>" class="form-control">
+<button type="submit" name="submit" class="btn btn-primary my-3">Edit Profile</button>
 
 </form>
 </div>
@@ -414,12 +446,69 @@ background-size: cover; background-position: center; object-fit: contain;">
 
 <script src="../js/main.js"></script>
 
-<script>
+<?php
+    if (isset($_GET['suc'])) {
+        $suc = $_GET['suc'];
+        echo "<script>
+            alert('$suc')
+        </script>";
+    }
+?>
+<script type="text/javascript">
+       function signin(){
+         <?php
+$sin = "SELECT * FROM attendance_records WHERE Id_no='$emc'";
+$sin2 = mysqli_query($link, $sin);
+    $rowsin = mysqli_fetch_array($sin2, MYSQLI_ASSOC);
+    $studid = $row['Student_id'];
+    $d = $row['Date'];
 
+    if($studid==$stud && $d==$date){
+        echo "<script>";
+        echo "alert('already signed in')";
+        echo "</script>";
+    }
+    else{
+        $query = "INSERT INTO attendance_records(Id_no,Student_id,Date,Day,Status,Signed_in) values('$emc','$stud','$date','$day','present','$time')";
+        if(mysqli_query($link,$query)){
+            echo "<script>";
+            echo "alert('Signed in Successfull Please Remember to Sign out')";
+            echo "</script>";
+        }
+        else{
+            echo "<script>";
+            echo "alert('error please sign in again')";
+            echo "</script>";
+        }
+    }
+         
+?>
 
+       }
+  </script>
 
-</script>
+<script type="text/javascript">
+       function signout(){ 
+    <?php
+ //           $sql = "SELECT * from students where Id_no = '$em2'";
+ // $result = mysqli_query($link, $sql);
 
+ $sign="UPDATE attendance_records SET Signed_out='$time' WHERE Id_no=$stud";
+$signout = mysqli_query($link,$sign);
+
+// if($signout){
+//     echo "<script>";
+//     echo "alert('Signed out Successfull Please Remember to Sign out')";
+//     echo "</script>";
+// }
+// else{
+//     echo "<script>";
+//     echo "alert('error please sign out again')";
+//     echo "</script>";
+// }
+ ?>
+ }
+   </script> 
 
 </body>
 </html>

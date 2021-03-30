@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,6 +8,45 @@
     <link rel="stylesheet" href="../css/Bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/style1.css">
     <script src="../css/Bootstrap/js/jquery-3.5.1.js"></script>
+    
+<?php
+error_reporting(0);
+require_once("config.php");
+if (isset($_POST['searchbtn'])){
+    $search=$_POST['search'];
+$query="SELECT * FROM students WHERE Student_id='$search' || Email_address='$search' || First_name='$search' || Last_name='$search'";
+$result=mysqli_query($link,$query);
+$name="sorry! this user does not exist in our database";
+ 
+while($row=mysqli_fetch_array($result)){
+    if($row==TRUE){
+        $name= $row['First_name']." ".$row['Last_name'];
+        $pic= $row['Profile_pic'];
+        $stud= $row['Student_id'];
+        
+        if($pic==NULL){
+            echo"<style>";
+            echo"#bag{background-image:url(../images/2003329.jpg)}";
+            echo"</style>";
+        }
+        else{
+            echo"<style>";
+            echo"#bag{background-image:url($pic)}";
+            echo"</style>"; 
+            echo"<button style='margin-top:22%; cursor: pointer; position:absolute; margin-left:67%;' class='btn-primary pt-1 pb-1 pl-2 pr-2'>";
+        echo"Signin";
+        echo"</button>"; 
+        echo"<button style='margin-top:22%; position:absolute; margin-left:73%;' class='btn-primary pt-1 pb-1 pl-2 pr-2'>";
+        echo"Signout";
+        echo"</button>";   
+        }
+         
+    }
+    
+}
+}
+
+?>
 </head>
 <body>
 <div class="container">
@@ -56,18 +96,25 @@
         away<br> from you linage and help your village people.
     </h6>
 
-    <a href="#" data-target="#exampleModalScrollable" data-toggle="modal" class="btn btn-primary btn-lg active mt-5" role="button" aria-pressed="true">Sign In</a>
+    <a href="#" data-target="#exampleModalScrollable" data-toggle="modal" onclick="btn();" class="btn btn-primary btn-lg active mt-5"  role="button" aria-pressed="true">Sign In</a>
      </div>
 
         <div class="col-lg-4 col-md-4 mt-5">
 
-            <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
+            <form class="form-inline my-2 my-lg-0" method="POST" action="<?php echo htmlentities($_SERVER['PHP_SELF']);?>">
+                <input class="form-control mr-sm-2" type="search" required name="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-primary my-2 my-sm-0" id="searchb" name="searchbtn" type="submit">Search</button>
             </form>
-
-            <span id="studentId suggestions" class="text-uppercase text-info" style="display:none" > student id suggestions</span>
-
+            
+<div class="row mt-2">
+<div class="col-6">
+            <span id="studentId suggestions" class="text-uppercase text-info" style="" ><?php echo $stud ?><br><?php echo $name ?></span>
+</div>
+<div class="col-6">
+<div id="bag" style="border-radius:50%; width:30%; background-size:cover; height:50px"></div>
+</div>
+</div>
+<button class="btn-primary pl-2 pr-2 pt-1 pb-1" style="display:none" id="searcht">Login</button>
         </div>
     </div>
 
@@ -86,20 +133,21 @@
                 <div class="modal-body">
                     <form action="process.php" method="POST" name="login_form">
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Student ID</label>
-                            <input type="text" class="form-control" name="email" aria-describedby="emailHelp">
+                            <label for="exampleInputEmail1">Email/Student ID</label>
+                            <input type="text" class="form-control" id="email" name="email" aria-describedby="emailHelp">
                             <small id="emailHelp" class="form-text text-muted">Please do not share your Student Id with anyone else.</small>
                         </div>
                         <div class="form-group">
                             <label for="exampleInputPassword1">Password</label>
-                            <input type="password" name="password" class="form-control" required>
+                            <input type="password" id="pass" name="password" class="form-control" required>
                             <span class="text-warning"><a href="#">Forgot Password?</a></span>
                         </div>
                         <div class="form-group form-check">
-                            <input type="checkbox" name="check" class="form-check-input">
+                            <input type="checkbox" id="check"  name="check" class="form-check-input">
                             <label class="form-check-label" for="exampleCheck1">Proceed to Profile</label>
                         </div>
-                       <input type="submit" name="submit" class="btn btn-primary" value="Sign In">
+
+                        <input type="submit" id="abled" name="submit" class="btn btn-primary" value="Sign In">
                     </form>
                 </div>
                 <div class="modal-footer">
@@ -115,7 +163,27 @@
 </body>
 <script src="../css/Bootstrap/js/jquery-3.5.1.min.js"></script>
 <script src="../css/Bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+function btn(){
+var password=document.getElementById("pass");
+var email=document.getElementById("email");
+var check=document.getElementById("check");
+if(email==null){
+  document.getElementById("abled").disabled=true;
+		}
+		//validate if password is empty
+		else if(password==null){
+            document.getElementById("abled").disabled=true;
+		}
+        else if(check==false){
+            document.getElementById("abled").disabled=true;
+		}
+        else{
+            document.getElementById("abled").disabled=false;  
+        }
+}
 
+</script>
 <?php
     if (isset($_GET['err'])) {
         $err = $_GET['err'];
