@@ -5,8 +5,8 @@
 
 }
 body{
-    background-image: url("../gif/home.gif");
-    background-size: cover;
+    background-image: url("../gif/home2.gif");
+    background-size: contain;
     background-position: center;
 }
 .main{
