@@ -5,15 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../vendor/bootstrap-4.4.1-dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../vendor/fontawesome-free/css/all.min.css">
-    <link rel="stylesheet" href="../css/login.css">
 
     <title>Login</title>
    <style>
        button{
            width: 45% !important;
            margin-top: 5rem;
-           border: none;
-           outline: none;
+           border: none !important;
+           outline: none ;
            padding: 0.5rem;
         
        }
@@ -21,6 +20,7 @@
         width: 80%;
         border: none;
         outline: none;
+        background-color: transparent;
        }
        .input{
 
@@ -28,7 +28,7 @@
            overflow: hidden;
             height: 90px;
             width: 50%;
-           border-bottom: 1px solid #057cfb;
+           border-bottom: 1px solid #057cfb5b;
        }
       i{
           padding-right: 0.5rem;
@@ -42,31 +42,65 @@
           height: 100%;
           position: absolute;
       }
+      .hidden{
+          display: none !important;
+      }
+
+      #pass, #pass3, #next2{
+          display: none;
+      }
    </style>
 </head>
 <body>
     <section class="container-fluid p-0  " style="height: 100vh; overflow: hidden;">
         <div class="row">
-        <div class="col-md-6 d-flex flex-column  justify-content-center align-items-center">
-            <div class="input">
-                <i class="fas fa-user    "></i>
+        <div class="col-md-6 d-flex flex-column email justify-content-center align-items-center" >
+                        <h4>Forgot your password?</h4>
+                        <h6>We got your back</h6>
+                         <div class="number d-flex flex-column justify-content-center align-items-center w-100">
+           
 
-                <input type="text" placeholder="Enter Username, Email or StudentID" class="  my-5">
+            <div class="input"  id="pass">
+                        <i class="fas fa-lock    "></i>
+                <input type="text"  placeholder="Enter Password Sent to You" class="  my-5">
             </div>
            
-            <div class="input">
-                <i class="fas fa-lock    "></i>
-                <input type="password" placeholder="Enter Password" class="  my-5">
+          
+            <button class="button btn-primary btnnumber"  id="pass3">Continue</button>
+        </div>
+            <div class="email  d-flex flex-column justify-content-center align-items-center w-100">
+           
+
+            <div class="input" id="pass2">
+                <i class="fas fa-user    "></i>
+
+                <input type="email" placeholder="Enter Your Email" class="  my-5">
             </div>
-            <button class="button btn-primary">Login</button>
+           
+          
+            <button class="button btn-primary emailbtn d-flex justify-content-center"  onclick="display()" id="next"><span id="passw">Next</span><span id="next2">Continue</span></button>
+        </div>
+
+       
 
         </div>
+        
 
         <div class="col-md-6 pic p-0" style="height: 100vh; background: url(../images/priscilla-du-preez-XkKCui44iM0-unsplash.jpg) center/cover; object-fit: cover;">
             
         </div>
     </div>
     </section>
+<script>
+  
 
+    function display(){
+        document.getElementById("pass2").style.display="none";
+        document.getElementById("passw").style.display="none";
+        document.getElementById("pass").style.display="block";
+        document.getElementById("next2").style.display="block";
+    }
+
+</script>
 </body>
 </html>
