@@ -30,7 +30,7 @@
 
     </div>
     <div class=" col-sm-12 col-md-7 col-lg-5 pt-4 px-lg-5 px-md-4">
-        <div class="ham " >
+        <div class="ham ">
             <i class="fas fa-align-justify burger"></i>
         </div>
     <h3>Edit dashboard</h3>
