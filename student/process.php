@@ -23,8 +23,8 @@
 	include("config.php");
 
 	session_start();
-	
-	
+
+
 	if($_SERVER["REQUEST_METHOD"] =="POST"){
 	if($_POST['check']==NULL){
 		$err="please check the box to proceed";
