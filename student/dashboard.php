@@ -190,7 +190,7 @@ $sql = "SELECT * from students where Id_no = '$emc'";
         <p class="mt-2 text-primary"> Sign in</p>
     </div>
 </a>
-<a href="" class="" onclick="signout();">
+<a data-id="<?= $em2; ?>" data-stud="<?= $stud; ?>" onclick="signOut(this);" class="" style="cursor: pointer">
     <div class="sign signcon2">
         <div class="circle">
             <i class="fas fa-marker  text-danger   "></i>
