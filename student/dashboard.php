@@ -1,11 +1,11 @@
 <?php
-$day = strtoupper(date('D'));
-$date = date('Y'.'-'.'m'.'-'.'d');
-$time = date('h'.':'.'i'.' '.'a');
+error_reporting(0);
+$date = date("Y-m-d");
+$time = date("h:i:s a");
 $emc=$_COOKIE['id'];
 require_once("config.php");
 
-$sql = "SELECT * from students where Id_no = '$emc'";
+$sql = "SELECT * from students where Id_no = $emc";
  $result = mysqli_query($link, $sql);
      $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
 
@@ -16,7 +16,33 @@ $sql = "SELECT * from students where Id_no = '$emc'";
      $lnamed = $row['Last_name'];
      $stud = $row['Student_id'];
      $em2 = $row['Id_no'];
+     $atton="";
+     $dateatt="";
 
+     $atts = "SELECT * from attendance_records where Id_no = $emc";
+     $attr = mysqli_query($link, $atts);
+         $rowatts = mysqli_fetch_array($attr, MYSQLI_ASSOC);
+    
+         $attid = $rowatts['Student_Id'];
+         $day= $rowatts['Day'];
+    
+         $attd = $rowatts['Date'];
+         $atttime = $rowatts['Signed_in'];       
+
+if($attid == $stud || $attd == $date){
+    echo "<style>";
+    echo ".clock{color:green; font-weight:bolder}";
+    echo "</style>";    
+$atton="Signed in";
+$dateatt=$atttime;
+}
+else{
+    echo "<style>";
+    echo ".clock{color:red; font-weight:bolder}";
+    echo "</style>";   
+    $atton="Not yet Signed in";
+    $dateatt="(please sign in)";
+}
 
     if($pic == NULL){
         echo "<style>";
@@ -29,6 +55,23 @@ $sql = "SELECT * from students where Id_no = '$emc'";
         echo "#profiled {background-image:url($pic)} #rad {background-image: url($pic);}";
         echo "</style>";
     }
+
+    function checkDae($spec_day){
+        global $day;
+        global $link;
+        global $emc;
+    
+    
+        if($day == $spec_day)  {
+            $atts = "SELECT * from attendance_records where Id_no = $emc && Day='$spec_day'";
+            $attr = mysqli_query($link, $atts);
+            $rowatts = mysqli_fetch_array($attr, MYSQLI_ASSOC);
+            $time = $rowatts['Signed_in'];  
+            
+            return $time;
+         } 
+    }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -100,13 +143,13 @@ $sql = "SELECT * from students where Id_no = '$emc'";
 <p class="pt-3 text-primary" style="font-size: small;">Today's timeline</p>
 <div class="d-flex flex-column">
 <div class=" timeline px-3" style="border: 1px solid #1479FF; color: #1479FF;">
-<i class="far fa-clock    "></i>
-<p class="m-0 px-3"> Signed in</p>
-<p class="m-0 px-3"> <small>08:00am</small></p>
+<i class="far fa-clock clock   "></i>
+<p class="m-0 px-3"> <?php echo $atton ?></p>
+<p class="m-0 px-3"> <small><?php echo $dateatt ?></small></p>
 
 </div>
 <div class=" timeline px-3" style="border: 2px solid #1479FF; color: #1479FF; background-color: white; box-shadow: 0px 2px 10px rgba(20, 121, 255,.2);">
-<i class="far fa-clock    "></i>
+<i class="far fa-clock  clock2  "></i>
 <p class="m-0 px-3"> Signed out</p>
 <p class="m-0 px-3"> <small>Not signed out</small></p>
 
@@ -119,14 +162,14 @@ $sql = "SELECT * from students where Id_no = '$emc'";
 <div class="border timeline px-3 btn-outline-primary text-dark" style=" color: #C8D0DE;">
 <i class="far fa-clock    "></i>
 <p class="m-0 px-3"> Mon</p>
-<p class="m-0 px-3">08:00am</p>
+<p class="m-0 px-3"><?= checkDae("Mon"); ?></p>
 <p class="m-0 px-3">05:00pm</p>
 
 </div>
 <div class=" timeline px-3 btn-outline-primary text-dark " style="/*background-color: #E7F1FD;*/ color: #C8D0DE;">
 <i class="far fa-clock    "></i>
 <p class="m-0 px-3"> Tue</p>
-<p class="m-0 px-3">08:30am</p>
+<p class="m-0 px-3"><?= checkDae("Tue"); ?></p>
 <p class="m-0 px-3">04:00pm</p>
 
 </div>
@@ -135,15 +178,15 @@ $sql = "SELECT * from students where Id_no = '$emc'";
 
 <div class="border timeline px-3 btn-outline-primary text-dark" style=" color: #C8D0DE;">
 <i class="far fa-clock    "></i>
-<p class="m-0 px-3"> Wed</p>
-<p class="m-0 px-3">08:00am</p>
+<p class="m-0 px-3">Wed </p>
+<p class="m-0 px-3"><?= checkDae("Wed"); ?></p>
 <p class="m-0 px-3">05:00pm</p>
 
 </div>
 <div class=" timeline px-3 btn-outline-primary text-dark" style="/*background-color: #E7F1FD;*/ color: #C8D0DE;">
 <i class="far fa-clock    "></i>
 <p class="m-0 px-3"> Thu</p>
-<p class="m-0 px-3">08:30am</p>
+<p class="m-0 px-3"><?= checkDae("Fri"); ?></p>
 <p class="m-0 px-3">04:00pm</p>
 
 </div>
@@ -151,7 +194,7 @@ $sql = "SELECT * from students where Id_no = '$emc'";
 <div class="border timeline px-3 btn-outline-primary text-dark" style=" color: #C8D0DE;">
 <i class="far fa-clock    "></i>
 <p class="m-0 px-3"> Fri</p>
-<p class="m-0 px-3">08:30am</p>
+<p class="m-0 px-3"><?= checkDae("Fri"); ?></p>
 <p class="m-0 px-3">04:00pm</p>
 
 </div>
@@ -214,9 +257,9 @@ $sql = "SELECT * from students where Id_no = '$emc'";
 <p style="position: absolute; left: 32%; font-size: 0.5rem;" class="pb-0 text-dark" >Classes Attended</p>
 <div class="progress mt-3 ml-4 h-25 w-50 d-flex align-items-center" style="border-radius: 2rem !important;">
 
-<div class="progress-bar h-50" role="progressbar" style="width: 85%;border-radius: 2rem;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+<div class="progress-bar h-50" role="progressbar" style="width: 5%;border-radius: 2rem;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
 </div>
-<p class="mt-4 text-primary ml-3" style="font-size:1rem ">85%</p>
+<p class="mt-4 text-primary ml-3" style="font-size:1rem ">5%</p>
 </div>
 <div class="attendancecon">
 <div class="round1" >
@@ -225,9 +268,9 @@ $sql = "SELECT * from students where Id_no = '$emc'";
 <p style="position: absolute; left: 88%; font-size: 0.5rem;" class="pb-0 text-dark " >Classes Skipped</p>
 <div class="progress mt-3 ml-4 h-25 w-50 d-flex align-items-center" style="border-radius: 2rem !important;">
 
-<div class="progress-bar h-50" role="progressbar" style="width: 15%;border-radius: 2rem;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+<div class="progress-bar h-50" role="progressbar" style="width: 95%;border-radius: 2rem;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
 </div>
-<p class="mt-4 text-primary ml-3" style="font-size:1rem ">15%</p>
+<p class="mt-4 text-primary ml-3" style="font-size:1rem ">95%</p>
 </div>
 </div>
 

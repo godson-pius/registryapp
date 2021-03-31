@@ -23,12 +23,6 @@
 	include("config.php");
 
 	session_start();
-<<<<<<< Updated upstream
-
-
-	if($_SERVER["REQUEST_METHOD"] == "POST"){
-
-=======
 	
 	
 	if($_SERVER["REQUEST_METHOD"] =="POST"){
@@ -37,15 +31,14 @@
 header("location:index.php?err=$err");
 	}
 	else{
->>>>>>> Stashed changes
 		$email = mysqli_real_escape_string($link, $_POST['email']);
 		$password = mysqli_real_escape_string($link, $_POST['password']);
 
 
 
 		$sql = "SELECT * from students where Student_id = '$email' || Email_address = '$email'";
-		$sql2 = "SELECT * from students where Password = '$password' && Email_address = '$email'";
-		$sql3 = "SELECT * from students where Password = '$password' && Student_id = '$email'";
+		$sql2 = "SELECT * from students where Passwords = '$password' && Email_address = '$email'";
+		$sql3 = "SELECT * from students where Passwords = '$password' && Student_id = '$email'";
 		$result = mysqli_query($link,$sql);
 		$result2 = mysqli_query($link,$sql2);
 		$result3 = mysqli_query($link,$sql3);
