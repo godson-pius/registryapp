@@ -1,4 +1,5 @@
 <?php
+error_reporting(0);
 $date = date("Y-m-d");
 $time = date("h:i:s a");
 $emc=$_COOKIE['id'];
@@ -185,7 +186,7 @@ else{
 <div class=" timeline px-3 btn-outline-primary text-dark" style="/*background-color: #E7F1FD;*/ color: #C8D0DE;">
 <i class="far fa-clock    "></i>
 <p class="m-0 px-3"> Thu</p>
-<p class="m-0 px-3">08:30am</p>
+<p class="m-0 px-3"><?= checkDae("Fri"); ?></p>
 <p class="m-0 px-3">04:00pm</p>
 
 </div>
@@ -193,7 +194,7 @@ else{
 <div class="border timeline px-3 btn-outline-primary text-dark" style=" color: #C8D0DE;">
 <i class="far fa-clock    "></i>
 <p class="m-0 px-3"> Fri</p>
-<p class="m-0 px-3">08:30am</p>
+<p class="m-0 px-3"><?= checkDae("Fri"); ?></p>
 <p class="m-0 px-3">04:00pm</p>
 
 </div>
@@ -256,9 +257,9 @@ else{
 <p style="position: absolute; left: 32%; font-size: 0.5rem;" class="pb-0 text-dark" >Classes Attended</p>
 <div class="progress mt-3 ml-4 h-25 w-50 d-flex align-items-center" style="border-radius: 2rem !important;">
 
-<div class="progress-bar h-50" role="progressbar" style="width: 85%;border-radius: 2rem;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+<div class="progress-bar h-50" role="progressbar" style="width: 5%;border-radius: 2rem;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
 </div>
-<p class="mt-4 text-primary ml-3" style="font-size:1rem ">85%</p>
+<p class="mt-4 text-primary ml-3" style="font-size:1rem ">5%</p>
 </div>
 <div class="attendancecon">
 <div class="round1" >
@@ -267,9 +268,9 @@ else{
 <p style="position: absolute; left: 88%; font-size: 0.5rem;" class="pb-0 text-dark " >Classes Skipped</p>
 <div class="progress mt-3 ml-4 h-25 w-50 d-flex align-items-center" style="border-radius: 2rem !important;">
 
-<div class="progress-bar h-50" role="progressbar" style="width: 15%;border-radius: 2rem;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+<div class="progress-bar h-50" role="progressbar" style="width: 95%;border-radius: 2rem;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
 </div>
-<p class="mt-4 text-primary ml-3" style="font-size:1rem ">15%</p>
+<p class="mt-4 text-primary ml-3" style="font-size:1rem ">95%</p>
 </div>
 </div>
 

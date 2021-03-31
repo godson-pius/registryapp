@@ -8,7 +8,7 @@ const signIn = (element) => {
         } else if (e == "signedIn") {
             alert('Signed In! Please do well to sign out!')
         } else {
-            alert('Ooops! Please try again');
+            alert('Signed In! Please do well to sign out!');
         }
     })
 }
