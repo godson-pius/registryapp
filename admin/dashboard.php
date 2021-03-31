@@ -1,3 +1,6 @@
+<?php
+    require_once 'functions.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,9 +31,9 @@
 
 <div class="roundcon1">
 <a href="#contact" class="contact">  <div class="round1" >
-<i class="far fa-calendar    "></i>
+<i class="far fa-user"></i>
 </div>
-<p>Calendar</p></a>
+<p>Students</p></a>
 </div>
 
 <div class="roundcon1">
@@ -52,7 +55,7 @@
 <div class="round1" style="background-image: url(../images/2003329.jpg);
 background-size: cover; background-position: center; object-fit: contain;">
 </div>
-<p class="font-weight-bold">Mitchelle</p>
+<p class="font-weight-bold">Admin</p>
 </div>
 
 <div class="roundcon1 py-2">
@@ -61,75 +64,38 @@ background-size: cover; background-position: center; object-fit: contain;">
 
 </div>
 <div class="col-sm-10 main container  row d-md-flex d-md-flex-row" >
-<div class=" col-sm-12 col-md-7 col-lg-6 pt-4 px-lg-5 px-md-4">
+<div class=" col-sm-12 col-md-7 col-lg-5 pt-4 px-lg-5 px-md-4">
     <div class="ham " >
         <i class="fas fa-align-justify    burger"></i>
     </div>
-<h3>Your<br>dashboard</h3>
+<h3>Admin<br>dashboard</h3>
 <p class="pt-3" style="color: #C8D0DE;font-size: small;">Today's timeline</p>
-<div class="d-flex flex-column">
-<div class=" timeline px-3" style="border: 1px solid #1479FF; color: #1479FF;">
-<i class="far fa-clock    "></i>
-<p class="m-0 px-3"> Signed in</p>
-<p class="m-0 px-3"> <small>08:00am</small></p>
 
-</div>
-<div class=" timeline px-3" style="border: 2px solid #1479FF; color: #1479FF; background-color: white; box-shadow: 0px 2px 10px rgba(20, 121, 255,.2);">
-<i class="far fa-clock    "></i>
-<p class="m-0 px-3"> Signed out</p>
-<p class="m-0 px-3"> <small>Not signed out</small></p>
+<?php
+    $result = viewRecords();
+    if (!empty($result)) {
+        foreach ($result as $record) {
+            extract($record);
+            $students = getStudent($Student_Id);
+            if (!empty($students)) {
+                foreach ($students as $stud) { ?>
+                    <div class="d-flex flex-column">
+                        <div class="border border-primary timeline px-3" style="">
+                            <i class="far fa-clock"></i>
+                            <p class="m-0 px-3"> <?= ucfirst($stud['First_name']) . " " . ucfirst($stud['Last_name']); ?></p>
+                            <p class="m-0 px-3"> <?= $Date; ?></p>
+                            <p class="m-0 px-3"> <?= $Day; ?></p>
+                            <p class="m-0 px-3"><?= $Signed_in; ?></p>
+                        </div>
+                    </div>
+<?php } } } } ?>
 
-</div>
-
-</div>
-
-<p class="pt-3" style="color: #C8D0DE;font-size: small;">Lastweek's timeline</p>
-<div class="d-flex flex-column">
-<div class="border timeline px-3" style=" color: #C8D0DE;">
-<i class="far fa-clock    "></i>
-<p class="m-0 px-3"> Mon</p>
-<p class="m-0 px-3">08:00am</p>
-<p class="m-0 px-3">05:00pm</p>
-
-</div>
-<div class=" timeline px-3" style="background-color: #E7F1FD; color: #C8D0DE;">
-<i class="far fa-clock    "></i>
-<p class="m-0 px-3"> Tue</p>
-<p class="m-0 px-3">08:30am</p>
-<p class="m-0 px-3">04:00pm</p>
-
-</div>
-
-</div>
-
-<div class="border timeline px-3" style=" color: #C8D0DE;">
-<i class="far fa-clock    "></i>
-<p class="m-0 px-3"> Wed</p>
-<p class="m-0 px-3">08:00am</p>
-<p class="m-0 px-3">05:00pm</p>
-
-</div>
-<div class=" timeline px-3" style="background-color: #E7F1FD; color: #C8D0DE;">
-<i class="far fa-clock    "></i>
-<p class="m-0 px-3"> Thu</p>
-<p class="m-0 px-3">08:30am</p>
-<p class="m-0 px-3">04:00pm</p>
-
-</div>
-
-<div class="border timeline px-3" style=" color: #C8D0DE;">
-<i class="far fa-clock    "></i>
-<p class="m-0 px-3"> Fri</p>
-<p class="m-0 px-3">08:30am</p>
-<p class="m-0 px-3">04:00pm</p>
-
-</div>
 
 </div>
 
 <div id="dashboard" class=" col-sm-10 col-md-5 w-100  pt-4 pl-sm-5 col-lg-6 px-md-0 px-lg-5">
 <div class="reminder  col-lg-9 pt-4">
-<h5 class="ml-5 ml-md-3">Hello,Mitchelle</h5>
+<h5 class="ml-5 ml-md-3">Hello, Admin</h5>
 <p class="ml-5 mt-4 ml-md-3" style="font-size: 0.7rem;">Don't forget to Sign in <br>and Sign Out today</p>
 <p class="ml-5 ml-md-3 my-md-2 mt-4 " style="font-size: 0.7rem;">Have a nice day.</p>
 
@@ -203,10 +169,27 @@ background-size: cover; background-position: center; object-fit: contain;">
 
 </div>
 </div>
-<div id="contact" class=" col-6 pt-4  " style="padding: 2rem 8% !important; display: none;">
-<h5>Calendar</h5>
+<div id="contact" class=" col-12" style="padding: 2rem 8% !important; display: none;">
+<h5>Students</h5>
 <div id="caleandar" >
-
+    <?php
+        $result = viewStudents();
+        if (!empty($result)) {
+            foreach ($result as $record) {
+                extract($record); ?>
+                    <div class="d-flex flex-column">
+                        <div class="border border-primary timeline px-3" style="">
+                            <i class="far fa-user"></i>
+                            <p class="m-0 px-3"> <?= $Student_Id; ?></p>
+                            <p class="m-0 px-3"> <?= ucfirst($stud['First_name']) . " " . ucfirst($stud['Last_name']); ?></p>
+                            <p class="m-0 px-3"> <?= $Email_address; ?></p>
+                            <p class="m-0 px-3"> <?= $Username; ?></p>
+                            <p class="m-0 px-3"> <b>(dob)</b> <?= $DOB; ?></p>
+                            <p class="m-0 px-3">(date registered) <?= $Date_registered; ?></p>
+                            <a href="edit.php?id=<?= $Student_id; ?>" class="m-0 btn btn-primary btn-sm px-3">Edit</a>
+                        </div>
+                    </div>
+    <?php } } ?>
 </div>
 </div>
 <div id="profile" class=" col-6 pt-4" style=" display: none;">
