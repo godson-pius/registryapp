@@ -8,23 +8,23 @@ require_once("config.php");
 $sql = "SELECT * from students where Id_no = '$emc'";
  $result = mysqli_query($link, $sql);
      $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
-     
+
      $pic = $row['Profile_pic'];
-     
+
      $emailed = $row['Email_address'];
      $fnamed = $row['First_name'];
      $lnamed = $row['Last_name'];
      $stud = $row['Student_id'];
      $em2 = $row['Id_no'];
 
-     
+
     if($pic == NULL){
         echo "<style>";
         echo "#profiled {background-image: url(../images/2003329.jpg)} #rad {background-image: url(../images/2003329.jpg)}";
         echo "</style>";
-    }  
-    else{  
-        
+    }
+    else{
+
         echo "<style>";
         echo "#profiled {background-image:url($pic)} #rad {background-image: url($pic);}";
         echo "</style>";
@@ -86,7 +86,7 @@ $sql = "SELECT * from students where Id_no = '$emc'";
 </div>
 
 <div class="roundcon1 py-2">
-<a href="">  <i class="fas fa-power-off  text-danger  pr-2"></i><p style="display: inline;">Logout</p></a>
+<a href="logout.php">  <i class="fas fa-power-off  text-danger  pr-2"></i><p style="display: inline;">Logout</p></a>
 </div>
 
 </div>
@@ -95,7 +95,7 @@ $sql = "SELECT * from students where Id_no = '$emc'";
         <i class="fas fa-align-justify    burger"></i>
     </div>
 <div class=" col-sm-12 none  col-md-7 col-lg-6 pt-4 px-lg-5 px-md-4">
-    
+
 <h3>Your<br>dashboard</h3>
 <p class="pt-3 text-primary" style="font-size: small;">Today's timeline</p>
 <div class="d-flex flex-column">
@@ -181,24 +181,27 @@ $sql = "SELECT * from students where Id_no = '$emc'";
 <div class="signin   mt-4 pt-2">
 <p class="ml-5  mt-4" style="font-size: 0.7rem;  color: #262afe;">Take attendance</p>
 <div class="signcon">
-<a href="" onclick="signin();">
-<div class="sign col-md-12 signcon1">
-<div class="circle">
-<i class="fas fa-marker  text-primary   "></i>
-</div>
-<p class="mt-2 text-primary"> Sign in</p>
-</div>
+
+<a id="sign_in" data-id="<?= $em2; ?>" data-stud="<?= $stud; ?>" onclick="signIn(this);" style="cursor: pointer">
+    <div class="sign col-md-12 signcon1">
+        <div class="circle">
+            <i class="fas fa-marker  text-primary   "></i>
+        </div>
+        <p class="mt-2 text-primary"> Sign in</p>
+    </div>
 </a>
 <a href="" class="" onclick="signout();">
-<div class="sign signcon2">
-<div class="circle">
-<i class="fas fa-marker  text-danger   "></i>
+    <div class="sign signcon2">
+        <div class="circle">
+            <i class="fas fa-marker  text-danger   "></i>
 
-</div>
-<p class="mt-2 text-danger"> Sign out</p>
+        </div>
+        <p class="mt-2 text-danger"> Sign out</p>
 
-</div>
+    </div>
 </a>
+
+
 </div>
 <div class="attendace  mt-4 pt-2">
 <p class="ml-5 mt-4" style="font-size: 0.7rem;  color: #262afe;">Attendance rating</p>
@@ -445,6 +448,7 @@ $sql = "SELECT * from students where Id_no = '$emc'";
 </section>
 
 <script src="../js/main.js"></script>
+<script src="js/action.js"></script>
 
 <?php
     if (isset($_GET['suc'])) {
@@ -454,61 +458,7 @@ $sql = "SELECT * from students where Id_no = '$emc'";
         </script>";
     }
 ?>
-<script type="text/javascript">
-       function signin(){
-         <?php
-$sin = "SELECT * FROM attendance_records WHERE Id_no='$emc'";
-$sin2 = mysqli_query($link, $sin);
-    $rowsin = mysqli_fetch_array($sin2, MYSQLI_ASSOC);
-    $studid = $row['Student_id'];
-    $d = $row['Date'];
 
-    if($studid==$stud && $d==$date){
-        echo "<script>";
-        echo "alert('already signed in')";
-        echo "</script>";
-    }
-    else{
-        $query = "INSERT INTO attendance_records(Id_no,Student_id,Date,Day,Status,Signed_in) values('$emc','$stud','$date','$day','present','$time')";
-        if(mysqli_query($link,$query)){
-            echo "<script>";
-            echo "alert('Signed in Successfull Please Remember to Sign out')";
-            echo "</script>";
-        }
-        else{
-            echo "<script>";
-            echo "alert('error please sign in again')";
-            echo "</script>";
-        }
-    }
-         
-?>
-
-       }
-  </script>
-
-<script type="text/javascript">
-       function signout(){ 
-    <?php
- //           $sql = "SELECT * from students where Id_no = '$em2'";
- // $result = mysqli_query($link, $sql);
-
- $sign="UPDATE attendance_records SET Signed_out='$time' WHERE Id_no=$stud";
-$signout = mysqli_query($link,$sign);
-
-// if($signout){
-//     echo "<script>";
-//     echo "alert('Signed out Successfull Please Remember to Sign out')";
-//     echo "</script>";
-// }
-// else{
-//     echo "<script>";
-//     echo "alert('error please sign out again')";
-//     echo "</script>";
-// }
- ?>
- }
-   </script> 
 
 </body>
 </html>
