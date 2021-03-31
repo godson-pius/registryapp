@@ -23,10 +23,21 @@
 	include("config.php");
 
 	session_start();
+<<<<<<< Updated upstream
 
 
 	if($_SERVER["REQUEST_METHOD"] == "POST"){
 
+=======
+	
+	
+	if($_SERVER["REQUEST_METHOD"] =="POST"){
+	if($_POST['check']==NULL){
+		$err="please check the box to proceed";
+header("location:index.php?err=$err");
+	}
+	else{
+>>>>>>> Stashed changes
 		$email = mysqli_real_escape_string($link, $_POST['email']);
 		$password = mysqli_real_escape_string($link, $_POST['password']);
 
@@ -80,4 +91,5 @@
 
 
 	}
+}
 ?>

@@ -251,7 +251,7 @@ $sql = "SELECT * from students where Id_no = '$emc'";
 <div class="add p-1 text-white" style="position: absolute;top: 70%; left: 90%; background-color:rgba(0, 132, 219, 0.466);width: 2rem;height: 2rem;display: flex;justify-content: center;align-items: center;border-radius: 50%;border: 1px solid white;">
 <i class="fas fa-plus    "></i>
 <form method="POST" action="edit.php" enctype="multipart/form-data">
-<input type="file" class="hidden" name="profile">
+<input type="file" class="hidden" hidden name="profile">
 </div>
 </div>
 </div>

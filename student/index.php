@@ -1,4 +1,11 @@
-
+<?php
+    if (isset($_GET['errl'])) {
+        $errl = $_GET['errl'];
+        echo "<script>
+            alert('$errl')
+        </script>";
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -140,7 +147,7 @@ while($row=mysqli_fetch_array($result)){
                         <div class="form-group">
                             <label for="exampleInputPassword1">Password</label>
                             <input type="password" id="pass" name="password" class="form-control" required>
-                            <span class="text-warning"><a href="#">Forgot Password?</a></span>
+                            <span class="text-warning"><a href="login.php">Forgot Password?</a></span>
                         </div>
                         <div class="form-group form-check">
                             <input type="checkbox" id="check"  name="check" class="form-check-input">

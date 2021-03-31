@@ -1,3 +1,11 @@
+<?php
+    if (isset($_GET['errl'])) {
+        $errl = $_GET['errl'];
+        echo "<script>
+            alert('$errl')
+        </script>";
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,6 +16,7 @@
 
     <title>Login</title>
    <style>
+
        button{
            width: 45% !important;
            margin-top: 5rem;
@@ -46,13 +55,13 @@
           display: none !important;
       }
 
-      #pass, #pass3, #next2{
-          display: none;
-      }
+     
    </style>
 </head>
 <body>
+  
     <section class="container-fluid p-0  " style="height: 100vh; overflow: hidden;">
+      <form method="POST" action="Forgot.php" name="form">
         <div class="row">
         <div class="col-md-6 d-flex flex-column email justify-content-center align-items-center" >
                         <h4>Forgot your password?</h4>
@@ -61,27 +70,32 @@
            
 
             <div class="input"  id="pass">
+                        <i class="fas fa-user    "></i>
+               
+                <input id="in1" type="text" placeholder="Enter Your Email" name="email" class="  my-5">
+            </div>
+            <div class="input"  id="pas">
                         <i class="fas fa-lock    "></i>
-                <input type="text"  placeholder="Enter Password Sent to You" class="  my-5">
+                
+                 <input id="in2" type="password"  placeholder="Enter New Password" name="pass" class="  my-5">
             </div>
            
           
-            <button class="button btn-primary btnnumber"  id="pass3">Continue</button>
+            
         </div>
             <div class="email  d-flex flex-column justify-content-center align-items-center w-100">
            
 
             <div class="input" id="pass2">
-                <i class="fas fa-user    "></i>
-
-                <input type="email" placeholder="Enter Your Email" class="  my-5">
+                <i class="fas fa-lock    "></i>
+<input type="password"  id="in3" placeholder="Confirm New Password" name="con" class="  my-5">
+                
             </div>
-           
+           <button type="submit" name="submit" class="button btn-primary btnnumber" style=""  id="but">Continue</button>
           
-            <button class="button btn-primary emailbtn d-flex justify-content-center"  onclick="display()" id="next"><span id="passw">Next</span><span id="next2">Continue</span></button>
         </div>
 
-       
+      
 
         </div>
         
@@ -90,16 +104,26 @@
             
         </div>
     </div>
+  </form>
     </section>
-<script>
-  
 
-    function display(){
-        document.getElementById("pass2").style.display="none";
-        document.getElementById("passw").style.display="none";
-        document.getElementById("pass").style.display="block";
-        document.getElementById("next2").style.display="block";
-    }
+<script>
+ 
+ // var in1=document.getElementById('in1');
+ // var in2=document.getElementById('in2');
+ // var in3=document.getElementById('in3');
+
+ // if(in1!= null && in2!=null){
+ //  document.getElementById("but").style.cursor="pointer";
+ // }
+
+    // function display(){
+    //     document.getElementById("pass2").style.display="none";
+    //     document.getElementById("passw").style.display="none";
+    //     document.getElementById("pass").style.display="block";
+    //     document.getElementById("next2").style.display="block";
+    //     document.getElementById("pas").style.display="block";
+    // }
 
 </script>
 </body>
