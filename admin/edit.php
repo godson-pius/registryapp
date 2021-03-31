@@ -48,7 +48,7 @@
         }
 
     ?>
-    <form class="" action="" method="post">
+    <form action="" method="post">
         <form>
           <fieldset class="form-group">
               <label>First name</label>
